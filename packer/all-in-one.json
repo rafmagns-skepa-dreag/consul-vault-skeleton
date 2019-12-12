@@ -1,0 +1,30 @@
+{
+  "builders": [
+    {
+      "type": "lxd",
+      "name": "lxd-centos7",
+      "image": "centos-7-ssh",
+      "output_image": "centos-7-consul-vault",
+      "publish_properties": {
+        "description": "Trivial repackage with Packer"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "../ansible/playbooks/consul_vault.yml",
+      "user": "root",
+      "groups": [
+        "base_image"
+      ],
+      "extra_arguments": [
+        "--connection=lxd"
+      ],
+      "ansible_env_vars": [
+        "ANSIBLE_ROLES_PATH=../ansible/roles",
+        "ANSIBLE_CONFIG=../ansible/ansible.cfg"
+      ]
+    }
+  ]
+}

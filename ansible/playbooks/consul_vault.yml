@@ -1,0 +1,6 @@
+---
+- hosts: base_image
+  gather_facts: false
+  tasks:
+    - name: Test Event
+      shell: date > build-date.txt

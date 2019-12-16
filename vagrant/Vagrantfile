@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.provision :shell, inline: "echo A"
+  config.vm.box = "centos/7"
+
+  config.vm.define :server1 do |test|
+    test.vm.provision :shell, inline: "echo B"
+  end
+
+  config.vm.define :server2 do |test|
+    test.vm.provision :shell, inline: "echo B"
+  end
+
+  config.vm.define :server3 do |test|
+    test.vm.provision :shell, inline: "echo B"
+  end
+
+end
